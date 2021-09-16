@@ -3,7 +3,24 @@
   overflow:hidden;
   margin: 0;
 }
-
+.date {
+  text-align: center;
+  width: 100px;
+}
+.user {
+  text-align: center;
+  width: 120px;
+}
+.list {
+  border:0;
+}
+.lists {
+  border-bottom: 1px solid #212529;
+}
+.lists:nth-child(n+2):hover {
+  color: pink;
+  cursor: pointer;
+}
 @media (max-width: 992px) {
   .title {
       width: 360px;
