@@ -13,11 +13,18 @@ function App() {
     title: 'Firstaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     user: 'user',
     date: '21/09/13',
-  }]);
+  },
+  {
+    post_id: 12,
+    title: 'aaaaa',
+    user: 'asdas',
+    date: '21/09/13',
+  }
+]);
   return (
     <div className="App">
       < Header />
-      < Main />
+      < Main posts = { posts }/>
     </div>
   );
 }

@@ -1,0 +1,17 @@
+.title {
+  text-overflow:ellipsis;
+  overflow:hidden;
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  .title {
+      width: 360px;
+    }
+}
+
+@media (max-width: 768px) {
+  .title {
+    width: 240px;
+  }
+}
