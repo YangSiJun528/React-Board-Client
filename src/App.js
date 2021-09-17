@@ -23,9 +23,15 @@ function App() {
 ]);
   return (
     <div className="App">
-      < Header login={ login }/>
-      {/* < Main posts = { posts }/> */}
-      <Login/>
+      <Header login={ login }/>
+      <Switch>
+        <Route path="/login">
+          <Login/>
+        </Route>
+        <Route path="/">
+        < Main posts = { posts }/>
+        </Route>
+      </Switch>
     </div>
   );
 }

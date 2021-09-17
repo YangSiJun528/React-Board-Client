@@ -7,7 +7,7 @@ import axios from 'axios';
 function Header(props) {
   let history = useHistory();
   return (
-  <Navbar className="mb-3">
+  <Navbar className="mb-3 nav">
     <Container>
       <Navbar.Brand><Link to="/">HOME</Link></Navbar.Brand>
       <Navbar.Toggle />
