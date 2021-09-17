@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Main, Header, Login } from './Components/index.js';
+import { Main, Header, Login, Register } from './Components/index.js';
 import './App.css';
 import { Navbar, NavDropdown, Form, Nav, FormControl, Button, Container, Col } from 'react-bootstrap'
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
@@ -25,6 +25,9 @@ function App() {
     <div className="App">
       <Header login={ login }/>
       <Switch>
+        <Route path="/register">
+          <Register/>
+        </Route>
         <Route path="/login">
           <Login/>
         </Route>
