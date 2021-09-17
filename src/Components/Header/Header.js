@@ -5,20 +5,21 @@ import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function Header(props) {
+  let history = useHistory();
   return (
   <Navbar className="mb-3">
     <Container>
-      <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+      <Navbar.Brand><Link to="/">HOME</Link></Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
       {
         props.login === true
         ?        
         <Navbar.Text>
-          Signed in as: <a href="#login">Mark Otto</a>
+          <a onClick={()=>{ history.push('/user') }}>Mark Otto</a>
         </Navbar.Text>
         :           
-          <Button className="justify-content-end" variant="outline-primary">Login</Button>
+          <Button onClick={()=>{ history.push('/login') }} className="justify-content-end" variant="outline-primary">Login</Button>
         }
       </Navbar.Collapse>
     </Container>

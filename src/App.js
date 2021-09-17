@@ -6,7 +6,7 @@ import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function App() {
-  let [ login, setLogin] = useState(true);
+  let [ login, setLogin] = useState(false);
   let [ page, setPage] = useState(1);
   let [ posts, setPosts] = useState([{
     post_id: 1,
@@ -23,7 +23,7 @@ function App() {
 ]);
   return (
     <div className="App">
-      < Header />
+      < Header login={ login }/>
       {/* < Main posts = { posts }/> */}
       <Login/>
     </div>

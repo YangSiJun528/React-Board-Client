@@ -14,20 +14,26 @@ function Login(props) {
   const [isOverlapChecking, setOverlapChecking] = useState(false);
   const [overlap, setOverlap] = useState(true);
   const [overlapAlerts, setOverlapAlert] = useState(false);
+  // componentWillUnmount구현
   useEffect(() => {
-    if (!isOverlapChecking) {
-      simulateNetworkRequest().then(() => {
-        // 중복 시
-        setOverlap(true);
-        setOverlapAlert(true);
-        setOverlapChecking(false);
-      })
-      .catch(() => {
-        // 중복 아님
-        setOverlap(false);
-        setOverlapAlert(false);
-        setOverlapChecking(false);
-      });
+    //처음 실행 시 여기가 실행됨
+    return () => {
+      //그 다음 실행 시 여기가 실행됨
+      if (!isOverlapChecking) {
+        simulateNetworkRequest().then(() => {
+          // 여기서 값을 해석해 중복인지 구분하고 처리할 예정
+          // 중복 시
+          setOverlap(true);
+          setOverlapAlert(true);
+          setOverlapChecking(false);
+        })
+        .catch(() => {
+          // 여기서는 에러처리? 안할수도 있음 (일단 다 만들고 브런치 파서 만들 예정)
+          setOverlap(false);
+          setOverlapAlert(false);
+          setOverlapChecking(false);
+        });
+      }
     }
   }, [isOverlapChecking]);
   const handleClick = () => {setOverlapChecking(true);setOverlapAlert(false);};
@@ -36,12 +42,12 @@ function Login(props) {
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="email" placeholder="Name" />
+          <Form.Control type="text" autocomplete="off" placeholder="Name" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>ID</Form.Label>
           <div className="mb-3 d-flex justify-content-between">
-          <Form.Control type="email" placeholder="ID" />
+          <Form.Control type="text" autocomplete="off" placeholder="ID" />
           {
             overlap 
             ? <Button
@@ -61,7 +67,7 @@ function Login(props) {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="button">
           Submit
         </Button>
       </Form>
