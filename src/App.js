@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Main, Header } from './Components/index.js';
+import { Main, Header, Login } from './Components/index.js';
 import './App.css';
 import { Navbar, NavDropdown, Form, Nav, FormControl, Button, Container, Col } from 'react-bootstrap'
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
@@ -24,7 +24,8 @@ function App() {
   return (
     <div className="App">
       < Header />
-      < Main posts = { posts }/>
+      {/* < Main posts = { posts }/> */}
+      <Login/>
     </div>
   );
 }
