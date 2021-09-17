@@ -1,0 +1,15 @@
+.sighUpBtn {
+  margin-right: 24px;
+}
+
+@media (max-width: 768px) {
+  .sighUpBtn {
+    margin-right: 18px;
+  }
+}
+
+@media (max-width: 425px) {
+  .sighUpBtn {
+    margin-right: 12px;
+  }
+}

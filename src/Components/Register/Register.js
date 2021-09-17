@@ -9,7 +9,7 @@ function simulateNetworkRequest() {
   return new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
-function Login(props) {
+function Register(props) {
   let history = useHistory();
   const [isOverlapChecking, setOverlapChecking] = useState(false);
   const [overlap, setOverlap] = useState(true);
@@ -75,4 +75,5 @@ function Login(props) {
   );
 }
 
-export default Login;
+
+export default Register;

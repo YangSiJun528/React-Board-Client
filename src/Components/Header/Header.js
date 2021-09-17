@@ -20,7 +20,7 @@ function Header(props) {
         </Navbar.Text>
         :      
         <>
-          <Button onClick={()=>{ history.push('/register') }} className="justify-content-end" variant="outline-primary">Sigh Up</Button>
+          <Button onClick={()=>{ history.push('/register') }} className="justify-content-end sighUpBtn" variant="outline-primary">Sigh Up</Button>
           <Button onClick={()=>{ history.push('/login') }} className="justify-content-end" variant="outline-primary">Login</Button>
         </>
         }
