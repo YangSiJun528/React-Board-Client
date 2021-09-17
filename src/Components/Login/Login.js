@@ -11,10 +11,18 @@ function simulateNetworkRequest() {
 
 function Login(props) {
   let history = useHistory();
-  const [isOverlapChecking, setOverlapChecking] = useState(false);
-  const [overlap, setOverlap] = useState(true);
-  const [overlapAlerts, setOverlapAlert] = useState(false);
-  const handleClick = () => {setOverlapChecking(true);setOverlapAlert(false);};
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      simulateNetworkRequest().then(() => {
+        //결과 받아서 맞는지 아닌지 확인하고 맞으면 페이지 이동
+        setLoading(false);
+      });
+    }
+  }, [isLoading]);
+
+  const handleClick = () => setLoading(true);
   return (
     <Container>
       <Form>
@@ -29,7 +37,13 @@ function Login(props) {
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
         <div align="right">
-          <Button variant="primary" type="button">Login</Button>
+        <Button
+          variant="primary"
+          disabled={isLoading}
+          onClick={!isLoading ? handleClick : null}
+        >
+          {isLoading ? 'Loading…' : 'Login'}
+        </Button>
         </div>
       </Form>
     </Container>

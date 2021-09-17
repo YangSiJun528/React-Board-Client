@@ -4,7 +4,7 @@ import { Navbar, NavDropdown, Form, Nav, FormControl, Button, Container, Col, Ta
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-//임시로 값 보내주는 함수
+//임시로 값 보내주는 함수 (나중에 중복확인용, 회원가입 신청용 따로 만들어야함)
 function simulateNetworkRequest() {
   return new Promise((resolve) => setTimeout(resolve, 2000));
 }
