@@ -18,6 +18,7 @@ function Login(props) {
     }, [resultLoading]);
   return (
     <Container>
+      <h3 className="mb-3">Login</h3>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>ID</Form.Label>

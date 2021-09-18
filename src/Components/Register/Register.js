@@ -31,6 +31,7 @@ function Register(props) {
     }, [resultLoading]);
   return (
     <Container>
+      <h3 className="mb-3">Sign Up</h3>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
