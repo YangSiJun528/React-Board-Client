@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, NavDropdown, Form, Nav, FormControl, Button, Container, Col, Table,ListGroup, Pagination, Alert } from 'react-bootstrap'
+import './style.css';
 
 /*
 컴포넌트 설명
@@ -14,6 +15,7 @@ unLoading : 로딩중이 아닐 때 나타날 String
 /*
 컴포넌트 설명
 props 설명
+props가 필요 없을 때는 일단 알잘딱 해서 하기 (나중에 고참)
 request: 서버에서 값을 받아오는 함수(promise문 리턴함)
 result: setstate함수(state바꾸는거)를 받아서 결과를 리턴함 (Object로 success: result, failure: null)
 loading: 로딩중 나타날 String

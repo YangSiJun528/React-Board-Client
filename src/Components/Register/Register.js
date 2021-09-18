@@ -14,17 +14,21 @@ function Register(props) {
   let history = useHistory();
   const [isOverlapChecking, setOverlapChecking] = useState(false);
   const [resultLoading, setResultLoading] = useState({});
+  const [overlapChecking, setoverlapChecking] = useState({});
   const [overlap, setOverlap] = useState(true);
   const [overlapAlerts, setOverlapAlert] = useState(false);
   useEffect(() => {
-      if (resultLoading.hasOwnProperty('success')) {
-        setOverlap(true);
-        setOverlapAlert(true);
-      } else if (resultLoading.hasOwnProperty('failure')) {
-        setOverlap(false);
-        setOverlapAlert(false);
-      } 
-      }, [resultLoading]);
+    if (overlapChecking.hasOwnProperty('success')) {
+      setOverlap(true);
+      setOverlapAlert(true);
+    } else if (overlapChecking.hasOwnProperty('failure')) {
+      setOverlap(false);
+      setOverlapAlert(false);
+    } 
+    }, [overlapChecking]);
+  useEffect(() => {
+    //로그인 버튼 클릭 할 때마다 실행됨
+    }, [resultLoading]);
   return (
     <Container>
       <Form>
@@ -35,12 +39,16 @@ function Register(props) {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>ID</Form.Label>
           <div className="mb-3 d-flex justify-content-between">
+          <Col>
           <Form.Control type="text" autocomplete="off" placeholder="ID" />
+          </Col>
+          <Col md="auto">
           {
             overlap 
-            ? <LoadingBtn request={simulateNetworkRequest} setResult={setResultLoading} loading={'확인중'} unLoading={'중복확인'}/>
+            ? <LoadingBtn request={simulateNetworkRequest} setResult={setoverlapChecking} loading={'확인중'} unLoading={'중복확인'}/>
           :<Button variant="primary overlapBtn" disabled>확인됨</Button>
           }
+          </Col>
           </div>
           { !overlapAlerts || <Alert variant="danger">이미 존재하는 ID 입니다.</Alert> }
         </Form.Group>
@@ -49,7 +57,7 @@ function Register(props) {
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
         <div align="right">
-          <Button variant="primary" type="button">Sign Up</Button>
+          <LoadingBtn request={simulateNetworkRequest} setResult={setResultLoading} loading={'Loading...'} unLoading={'Sigh Up'}/>
         </div>
       </Form>
     </Container>

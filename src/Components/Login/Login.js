@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import { Navbar, NavDropdown, Form, Nav, FormControl, Button, Container, Col, Table,ListGroup, Pagination, Alert } from 'react-bootstrap'
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
+import { LoadingBtn } from '../index.js';
 import axios from 'axios';
 
 //임시로 값 보내주는 함수
@@ -11,18 +12,10 @@ function simulateNetworkRequest() {
 
 function Login(props) {
   let history = useHistory();
-  const [isLoading, setLoading] = useState(false);
-
+  const [resultLoading, setResultLoading] = useState({});
   useEffect(() => {
-    if (isLoading) {
-      simulateNetworkRequest().then(() => {
-        //결과 받아서 맞는지 아닌지 확인하고 맞으면 페이지 이동
-        setLoading(false);
-      });
-    }
-  }, [isLoading]);
-
-  const handleClick = () => setLoading(true);
+    //로그인 버튼 클릭 할 때마다 실행됨
+    }, [resultLoading]);
   return (
     <Container>
       <Form>
@@ -37,13 +30,7 @@ function Login(props) {
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
         <div align="right">
-        <Button
-          variant="primary"
-          disabled={isLoading}
-          onClick={!isLoading ? handleClick : null}
-        >
-          {isLoading ? 'Loading…' : 'Login'}
-        </Button>
+          <LoadingBtn request={simulateNetworkRequest} setResult={setResultLoading} loading={'Loading...'} unLoading={'Login'}/>
         </div>
       </Form>
     </Container>
