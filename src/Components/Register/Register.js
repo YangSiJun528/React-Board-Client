@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import { Navbar, NavDropdown, Form, Nav, FormControl, Button, Container, Col, Table,ListGroup, Pagination, Alert } from 'react-bootstrap'
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
+import { LoadingBtn } from '../index.js';
 import axios from 'axios';
 
 //임시로 값 보내주는 함수 (나중에 중복확인용, 회원가입 신청용 따로 만들어야함)
@@ -12,31 +13,18 @@ function simulateNetworkRequest() {
 function Register(props) {
   let history = useHistory();
   const [isOverlapChecking, setOverlapChecking] = useState(false);
+  const [resultLoading, setResultLoading] = useState({});
   const [overlap, setOverlap] = useState(true);
   const [overlapAlerts, setOverlapAlert] = useState(false);
-  // componentWillUnmount구현
   useEffect(() => {
-    //처음 실행 시 여기가 실행됨
-    return () => {
-      //그 다음 실행 시 여기가 실행됨
-      if (!isOverlapChecking) {
-        simulateNetworkRequest().then(() => {
-          // 여기서 값을 해석해 중복인지 구분하고 처리할 예정
-          // 중복 시
-          setOverlap(true);
-          setOverlapAlert(true);
-          setOverlapChecking(false);
-        })
-        .catch(() => {
-          // 여기서는 에러처리? 안할수도 있음 (일단 다 만들고 브런치 파서 만들 예정)
-          setOverlap(false);
-          setOverlapAlert(false);
-          setOverlapChecking(false);
-        });
-      }
-    }
-  }, [isOverlapChecking]);
-  const handleClick = () => {setOverlapChecking(true);setOverlapAlert(false);};
+      if (resultLoading.hasOwnProperty('success')) {
+        setOverlap(true);
+        setOverlapAlert(true);
+      } else if (resultLoading.hasOwnProperty('failure')) {
+        setOverlap(false);
+        setOverlapAlert(false);
+      } 
+      }, [resultLoading]);
   return (
     <Container>
       <Form>
@@ -50,14 +38,7 @@ function Register(props) {
           <Form.Control type="text" autocomplete="off" placeholder="ID" />
           {
             overlap 
-            ? <Button
-            variant="primary overlapBtn"
-            disabled={isOverlapChecking}
-            onClick={!isOverlapChecking ? handleClick : null}>
-            {
-            !isOverlapChecking ? '중복확인' : '확인중'
-            }
-          </Button>
+            ? <LoadingBtn request={simulateNetworkRequest} setResult={setResultLoading} loading={'확인중'} unLoading={'중복확인'}/>
           :<Button variant="primary overlapBtn" disabled>확인됨</Button>
           }
           </div>
