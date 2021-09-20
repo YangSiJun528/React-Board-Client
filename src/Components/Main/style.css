@@ -1,3 +1,6 @@
+.container {
+  position: relative;
+}
 .title {
   text-overflow:ellipsis;
   overflow:hidden;
@@ -29,6 +32,12 @@
 .sr-only {
   display: none;
 }
+.writeBtn {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  margin: 16px 12px;
+}
 @media (max-width: 992px) {
   .title {
       width: 360px;
@@ -41,16 +50,28 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 575px) {
   .wrap-title, .date, .user
   {
     padding: 8px 8px;
   }
   .title {
-    width: 180px;
+    width: 200px;
+  }
+  .posts {
+    margin-bottom: 60px;
+    }
+  .writeBtn {
+    bottom: 30px;
   }
   .date,.user {
     width: 80px;
+  }
+}
+
+@media (max-width: 425px) { 
+  .title {
+    width: 180px;
   }
 }
 @media (max-width: 380px) {

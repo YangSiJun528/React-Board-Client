@@ -11,7 +11,7 @@ function Main(props) {
     //여기서 반복문으로 숫자 보여줌
   }, [ page ]);
   return (
-    <Container>
+    <Container className="container">
       <Form className="d-flex mb-3">
         <FormControl
           type="search"
@@ -32,7 +32,7 @@ function Main(props) {
       {
         props.posts.map((post) =>
         {return (
-        <ListGroup horizontal className="d-flex justify-content-between lists mt-1" onClick={ () => {history.push(`/posts/${post.number}`)}}>
+        <ListGroup horizontal className="d-flex justify-content-between lists mt-1" onClick={ () => {history.push(`/posts/${post.post_id}`)}}>
           <ListGroup.Item className="flex-fill list wrap-title"><p className="title d-block">{post.title}</p></ListGroup.Item>
           <ListGroup horizontal className="d-flex justify-content-between list">
             <ListGroup.Item className="user list">{post.user}</ListGroup.Item>
@@ -42,6 +42,9 @@ function Main(props) {
         )})
       }
       </div>
+      {
+      // DB에 있는 게시물 수 계산해서 보여줌 (하나밖에 없으면 하나만 나옴 최대 5개)
+      }<Button variant="primary writeBtn">Write</Button>
       <Pagination className="mt-3 justify-content-center pagination">
         <Pagination.First />
         <Pagination.Prev />
@@ -53,7 +56,6 @@ function Main(props) {
         <Pagination.Next />
         <Pagination.Last />
       </Pagination>
-      
       </Container>
   );
 }
