@@ -13,6 +13,11 @@ function Main(props) {
   return (
     <Container className="container">
       <Form className="d-flex mb-3">
+        <select class="form-select select" aria-label="Default select example">
+          <option value="1">전체</option>
+          <option value="2">제목</option>
+          <option value="3">유저</option>
+        </select>
         <FormControl
           type="search"
           placeholder="Search"
@@ -32,7 +37,7 @@ function Main(props) {
       {
         props.posts.map((post) =>
         {return (
-        <ListGroup horizontal className="d-flex justify-content-between lists mt-1" onClick={ () => {history.push(`/posts/${post.post_id}`)}}>
+        <ListGroup horizontal className="d-flex justify-content-between lists mt-1" onClick={ () => {history.push(`/post/${post.post_id}`)}}>
           <ListGroup.Item className="flex-fill list wrap-title"><p className="title d-block">{post.title}</p></ListGroup.Item>
           <ListGroup horizontal className="d-flex justify-content-between list">
             <ListGroup.Item className="user list">{post.user}</ListGroup.Item>

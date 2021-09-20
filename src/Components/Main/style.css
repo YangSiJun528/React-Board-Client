@@ -38,6 +38,9 @@
   right: 0;
   margin: 16px 12px;
 }
+.select {
+  width: 100px;
+}
 @media (max-width: 992px) {
   .title {
       width: 360px;
