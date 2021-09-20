@@ -16,7 +16,7 @@ function Header(props) {
         props.login === true
         ?        
         <Navbar.Text>
-          <a onClick={()=>{ history.push('/user') }}>Mark Otto</a>
+          <a onClick={()=>{ history.push(`/user/${props.user.id}`); }}>Mark Otto</a>
         </Navbar.Text>
         :      
         <>

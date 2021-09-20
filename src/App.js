@@ -6,8 +6,12 @@ import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function App() {
-  let [ login, setLogin] = useState(false);
-  let [ page, setPage] = useState(1);
+  let [ login, setLogin] = useState(true);
+  let [ user, setUser] = useState({
+    id: 'user1234!',
+    password: 'password',
+    name: 'User'
+  });
   let [ posts, setPosts] = useState([{
     post_id: 1,
     title: 'Firstaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
@@ -23,7 +27,7 @@ function App() {
 ]);
   return (
     <div className="App">
-      <Header login={ login }/>
+      <Header login={ login } user={ user }/>
       <Switch>
         <Route path="/register">
           <Register/>
@@ -31,8 +35,14 @@ function App() {
         <Route path="/login">
           <Login/>
         </Route>
+        <Route path="/post/:post_id">
+          <p>글 보기 페이지 입니다.</p>
+        </Route>
+        <Route path="/user/:user_id">
+          <p>유저 정보 페이지 입니다.</p>
+        </Route>
         <Route path="/">
-        < Main posts = { posts }/>
+          < Main posts = { posts }/>
         </Route>
       </Switch>
     </div>
