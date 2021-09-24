@@ -4,6 +4,7 @@ import './App.css';
 import { Navbar, NavDropdown, Form, Nav, FormControl, Button, Container, Col } from 'react-bootstrap'
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import datas from './data.json'
 
 function App() {
   let [ login, setLogin] = useState(true);
@@ -12,19 +13,7 @@ function App() {
     password: 'password',
     name: 'User'
   });
-  let [ posts, setPosts] = useState([{
-    post_id: 1,
-    title: 'Firstaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    user: 'user',
-    date: '21/09/13',
-  },
-  {
-    post_id: 12,
-    title: 'aaaaa',
-    user: 'asdas',
-    date: '21/09/13',
-  }
-]);
+  let [ posts, setPosts] = useState(datas.posts);
   return (
     <div className="App">
       <Header login={ login } user={ user }/>
