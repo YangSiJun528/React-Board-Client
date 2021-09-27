@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Main, Header, Login, Register } from './Components/index.js';
+import { Main, Header, Login, Register, Write } from './Components/index.js';
 import './App.css';
 import { Navbar, NavDropdown, Form, Nav, FormControl, Button, Container, Col } from 'react-bootstrap'
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
@@ -29,6 +29,9 @@ function App() {
         </Route>
         <Route path="/user/:user_id">
           <p>유저 정보 페이지 입니다.</p>
+        </Route>
+        <Route path="/write">
+          <Write />
         </Route>
         <Route path="/">
           < Main posts = { posts }/>
