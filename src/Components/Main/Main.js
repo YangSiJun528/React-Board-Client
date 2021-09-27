@@ -12,7 +12,7 @@ function Main(props) {
   let [currentPage, setCurrentPage] = useState(0);
   let [totalPage, setTotalPage] = useState(15);
   let [page, setPage] = useState([]);
-  let [ search, setSearch ] = useState([]);
+  let [ search, setSearch ] = useState("");
   const handlePageChange = (i) => {
     console.log("I:" + i)
     axios.get(`/?limit=${limit}&page=${i * limit}`)
@@ -21,6 +21,9 @@ function Main(props) {
       })
       .catch();
     setCurrentPage(i)
+  }
+  const handleSearch = () => {
+    setSearch(document.querySelector(".search").value.split(" ").filter((element) => element !== "").join("+"))
   }
   const handlePageLoading = () => {
     axios.get(`/page`)
@@ -41,14 +44,13 @@ function Main(props) {
     // 현재 페이지 바뀔 때마다 실행
   }, [currentPage]);
   useEffect(() => {
-    handlePageLoading()
-  }, []);
+    history.push(`/?search=${search}`)
+  }, [search]);
   function pagination(totalPage, currentPage) { 
     let num = 0;
     let forArray = [];
     console.log(totalPage + "\t" + (currentPage))
     if (paginationNumber(totalPage) == paginationNumber(currentPage)) {
-      console.log("adsdsa")
       num = totalPage -  paginationNumber(currentPage);
     }
     else
@@ -60,8 +62,8 @@ function Main(props) {
   }
   return (
     <Container className="container">
-      <Form className="d-flex mb-3">
-        <select class="form-select select" aria-label="Default select example">
+      <Form className="d-flex mb-3" onSubmit="return false;">
+        <select class="form-select select" aria-label="search select">
           <option value="1">전체</option>
           <option value="2">제목</option>
           <option value="3">유저</option>
@@ -71,10 +73,15 @@ function Main(props) {
           placeholder="Search"
           className="mr-2 search"
           aria-label="Search"
+          onKeyDown={(e) => {
+            if(e.keyCode == 13){
+              e.preventDefault();
+              handleSearch()
+            }
+          }}
         />
         <Button variant="outline-primary" onClick={() => {
-          setSearch(document.querySelector(".search").value.trim().split(" ").filter((element) => element !== "").join("+"))
-          history.push(`/?search=${search}`)
+          handleSearch()
         }}>Search</Button>
       </Form>
       <div className="posts">
