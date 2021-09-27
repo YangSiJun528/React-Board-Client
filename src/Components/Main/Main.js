@@ -12,12 +12,7 @@ function Main(props) {
   let [currentPage, setCurrentPage] = useState(0);
   let [totalPage, setTotalPage] = useState(15);
   let [page, setPage] = useState([]);
-  const nextPage = () => {
-
-  }
-  // const nextPage = () => {}
-  // const nextPage = () => {}
-  // const nextPage = () => {}
+  let [ search, setSearch ] = useState([]);
   const handlePageChange = (i) => {
     console.log("I:" + i)
     axios.get(`/?limit=${limit}&page=${i * limit}`)
@@ -74,10 +69,13 @@ function Main(props) {
         <FormControl
           type="search"
           placeholder="Search"
-          className="mr-2"
+          className="mr-2 search"
           aria-label="Search"
         />
-        <Button variant="outline-primary">Search</Button>
+        <Button variant="outline-primary" onClick={() => {
+          setSearch(document.querySelector(".search").value.trim().split(" ").filter((element) => element !== "").join("+"))
+          history.push(`/?search=${search}`)
+        }}>Search</Button>
       </Form>
       <div className="posts">
         <ListGroup horizontal className="d-flex justify-content-between lists mt-1">
@@ -131,5 +129,8 @@ function Main(props) {
     </Container>
   );
 }
+
+
+//검색 값 배열로 만들든 뭐든 해서 /(메인)?search=검색1+검색2(띄어쓰기 기준 +로 나눔) 으로 get 이동하게 만들기
 
 export default Main;
