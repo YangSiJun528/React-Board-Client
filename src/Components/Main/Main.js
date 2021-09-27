@@ -23,7 +23,9 @@ function Main(props) {
     setCurrentPage(i)
   }
   const handleSearch = () => {
-    setSearch(document.querySelector(".search").value.split(" ").filter((element) => element !== "").join("+"))
+    if (document.querySelector(".search").value.split(" ").filter((element) => element !== "").length != 0) {
+      setSearch(document.querySelector(".search").value.split(" ").filter((element) => element !== "").join("+"))
+    }
   }
   const handlePageLoading = () => {
     axios.get(`/page`)
