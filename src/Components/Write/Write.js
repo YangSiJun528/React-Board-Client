@@ -56,7 +56,16 @@ function Write(props) {
         /> 
       </div>
       <div align="right" className="mt-3">
-        <Button variant="primary" type="button" onClick={() => {}}>
+        <Button variant="primary" type="button" onClick={() => {
+          console.log(JSON.stringify(content))
+          axios.post("url", JSON.stringify(content), {
+            headers: { "Content-Type": `application/json`}
+              }
+          ).then((res) => {
+            console.log(res);
+          }).catch(() => {
+          })
+        }}>
           Submit
         </Button>
       </div>
