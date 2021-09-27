@@ -4,6 +4,8 @@ import Register from "./Register/Register";
 import Login from "./Login/Login";
 import LoadingBtn from "./LoadingBtn/LoadingBtn";
 import Write from "./Write/Write";
+import User from "./User/User";
+import Post from "./Post/Post";
 
 export { 
   Main,
@@ -11,5 +13,7 @@ export {
   Login,
   Register,
   LoadingBtn,
-  Write
+  Write,
+  Post,
+  User
 };
