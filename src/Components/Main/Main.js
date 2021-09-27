@@ -10,7 +10,7 @@ function Main(props) {
   let [limit, setLimit] = useState(14);
   // 0부터 끝-1 까지
   let [currentPage, setCurrentPage] = useState(0);
-  let [totalPage, setTotalPage] = useState(18);
+  let [totalPage, setTotalPage] = useState(15);
   let [page, setPage] = useState([]);
   const nextPage = () => {
 
@@ -107,10 +107,11 @@ function Main(props) {
         // DB에 있는 게시물 수 계산해서 보여줌 (하나밖에 없으면 하나만 나옴 최대 5개)
       }<Button variant="primary writeBtn" onClick={() => { history.push(`/write`) }}>Write</Button>
       <Pagination className="mt-3 justify-content-center pagination">
-        <Pagination.First onClick={() => { handlePageChange(0) }} />
+        <Pagination.First onClick={() => {handlePageChange(0)
+          }} />
         <Pagination.Prev onClick={() => {
-          console.log(paginationNumber(currentPage) - 1)
-          handlePageChange(paginationNumber(currentPage) - 1)
+          if(currentPage != 0)
+            { handlePageChange(currentPage-1) } 
         }} />
         {
           page.map((i) => {
@@ -121,7 +122,10 @@ function Main(props) {
             return <Pagination.Item key={i} className={active} onClick={() => { handlePageChange(i) }}>{i + 1}</Pagination.Item>
           })
         }
-        <Pagination.Next onClick={() => { handlePageChange(currentPage + 1) }} />
+        <Pagination.Next onClick={() => { 
+          if(totalPage != (currentPage+1))
+            { handlePageChange(currentPage + 1) }
+          }} />
         <Pagination.Last onClick={() => { handlePageChange(totalPage - 1) }} />
       </Pagination>
     </Container>
