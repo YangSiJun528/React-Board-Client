@@ -2,6 +2,10 @@
   margin-right: 24px;
 }
 
+.navbar-text:hover,.navbar-brand:hover {
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .sighUpBtn {
     margin-right: 18px;

@@ -28,7 +28,7 @@ function Main(props) {
   const handlePageLoading = () => {
     axios.get(`/page`)
       .then((result) => {
-        setTotalPage(Math.ceil(parseInt(result.totalPostsNum)));
+        setTotalPage(Math.ceil(result.totalPostsNum));
         setPosts(result.currentPagePosts)
         setPage(pagination(totalPage, currentPage))
       })
@@ -64,9 +64,9 @@ function Main(props) {
     <Container className="container">
       <Form className="d-flex mb-3" onSubmit="return false;">
         <select class="form-select select" aria-label="search select">
-          <option value="1">전체</option>
-          <option value="2">제목</option>
-          <option value="3">유저</option>
+          <option class="select" value="1">전체</option>
+          <option class="select" value="2">제목</option>
+          <option class="select" value="3">유저</option>
         </select>
         <FormControl
           type="search"
