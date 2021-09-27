@@ -64,11 +64,11 @@ function Main(props) {
   }
   return (
     <Container className="container">
-      <Form className="d-flex mb-3" onSubmit="return false;">
-        <select class="form-select select" aria-label="search select">
-          <option class="select" value="1">전체</option>
-          <option class="select" value="2">제목</option>
-          <option class="select" value="3">유저</option>
+      <Form className="d-flex mb-3">
+        <select className="form-select select" aria-label="search select">
+          <option className="select" value="1">전체</option>
+          <option className="select" value="2">제목</option>
+          <option className="select" value="3">유저</option>
         </select>
         <FormControl
           type="search"
@@ -97,9 +97,9 @@ function Main(props) {
         {
           posts !== null &&
           //나중에는 비동기로 받아오는걸로 바꿀거임 props.posts. > posts. 로 바꾸기
-          props.posts.map((post) => {
+          props.posts.map((post,i) => {
             return (
-              <ListGroup horizontal className="d-flex justify-content-between lists mt-1" onClick={() => { history.push(`/post/${post.post_id}`) }}>
+              <ListGroup key={i} horizontal className="d-flex justify-content-between lists mt-1" onClick={() => { history.push(`/post/${post.post_id}`) }}>
                 <ListGroup.Item className="flex-fill list wrap-title"><p className="title d-block">{post.title}</p></ListGroup.Item>
                 <ListGroup horizontal className="d-flex justify-content-between list">
                   <ListGroup.Item className="user list">{post.user}</ListGroup.Item>
