@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import { Navbar, NavDropdown, Form, Nav, FormControl, Button, Container, Col, Table,ListGroup, Pagination, Alert } from 'react-bootstrap'
-import { Link, Route, Switch, useHistory } from 'react-router-dom';
+import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function Write(props) {
   let history = useHistory();
+  let { post_id } = useParams();
   const [content, setContent] = useState({
     title: '',
     body: ''
@@ -22,6 +23,15 @@ function Write(props) {
       })
       console.log(content);
   };
+  useEffect(() => { 
+  if (post_id != null) {
+    console.log(post_id)
+    axios.get(`/page/${post_id}`)
+    .then((result) => {
+    })
+    .catch();
+  }
+    },[])
   return (
     <Container>
       <h2 className="mt-3">Write</h2>

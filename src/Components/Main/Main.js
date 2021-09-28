@@ -14,7 +14,6 @@ function Main(props) {
   let [page, setPage] = useState([]);
   let [ search, setSearch ] = useState("");
   const handlePageChange = (i) => {
-    console.log("I:" + i)
     axios.get(`/?limit=${limit}&page=${i * limit}`)
       .then((result) => {
         setPosts(result.currentPagePosts)
@@ -51,7 +50,6 @@ function Main(props) {
   function pagination(totalPage, currentPage) { 
     let num = 0;
     let forArray = [];
-    console.log(totalPage + "\t" + (currentPage))
     if (paginationNumber(totalPage) == paginationNumber(currentPage)) {
       num = totalPage -  paginationNumber(currentPage);
     }

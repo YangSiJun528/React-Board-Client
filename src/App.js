@@ -30,6 +30,9 @@ function App() {
         <Route path="/user/:user_id">
           <User/>
         </Route>
+        <Route path="/write:post_id">
+          <Write />
+        </Route>
         <Route path="/write">
           <Write />
         </Route>
