@@ -9,10 +9,12 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function Write(props) {
   let history = useHistory();
   let { post_id } = useParams();
-  const [content, setContent] = useState({
-    title: '',
-    body: ''
-  })
+  let [user, setUser] = useState({id: "asd",name: "asd"});
+  // const [content, setContent] = useState({
+  //   title: '',
+  //   body: ''
+  // })
+  const [content, setContent] = useState({title: "asd",body:"<h1>aaaa</h1><p>aaasdaa</p>"}) // 값 서버에서 받아서 보내주기
   const getValue = e => {
     const { name, value } = e.target;
       console.log(name, value);
@@ -28,6 +30,8 @@ function Write(props) {
     console.log(post_id)
     axios.get(`/page/${post_id}`)
     .then((result) => {
+      setContent(result.data.content)
+      setUser(result.data.user)
     })
     .catch();
   }
@@ -37,13 +41,13 @@ function Write(props) {
       <h2 className="mt-3">Write</h2>
       <div className="mt-2">
         <h4>Title</h4>
-        <Form.Control onChange={getValue} name='title' size="lg" type="text" placeholder="Title" />
+        <Form.Control onChange={getValue} value={content.title} name='title' size="lg" type="text" placeholder="Title" />
       </div>
       <div className="mt-2">
         <h4>Body</h4>
         <CKEditor
           editor={ ClassicEditor }
-          data=""
+          data={content.body}
           onReady={ editor => {
               // You can store the "editor" and use when it is needed.
               console.log( 'Editor is ready to use!', editor );
