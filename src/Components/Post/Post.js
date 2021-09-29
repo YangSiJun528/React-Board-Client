@@ -11,7 +11,7 @@ function Post(props) {
   let [user, setUser] = useState({id: "asd",name: "asd"});
   let { post_id } = useParams();
   useEffect(() => { 
-  axios.get(`/page/${post_id}`)
+  axios.get(`/post/${post_id}`)
     .then((result) => {
       setContent(result.data.content)
       setUser(result.data.user)

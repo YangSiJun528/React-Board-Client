@@ -28,7 +28,7 @@ function Write(props) {
   useEffect(() => { 
   if (post_id != null) {
     console.log(post_id)
-    axios.get(`/page/${post_id}`)
+    axios.get(`/post/${post_id}`)
     .then((result) => {
       setContent(result.data.content)
       setUser(result.data.user)

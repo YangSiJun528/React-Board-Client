@@ -55,7 +55,7 @@ function Register(props) {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control type="text" placeholder="Password" />
         </Form.Group>
         <div align="right">
           <LoadingBtn request={simulateNetworkRequest} setResult={setResultLoading} loading={'Loading...'} unLoading={'Sigh Up'}/>
