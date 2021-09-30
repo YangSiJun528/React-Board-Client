@@ -10,7 +10,7 @@ function Main(props) {
   let [limit, setLimit] = useState(14);
   // 0부터 끝-1 까지
   let [currentPage, setCurrentPage] = useState(0);
-  let [totalPage, setTotalPage] = useState(15);
+  let [totalPage, setTotalPage] = useState(77);
   let [page, setPage] = useState([]);
   let [ search, setSearch ] = useState("");
   const handlePageChange = (i) => {

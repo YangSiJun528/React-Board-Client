@@ -14,8 +14,10 @@ function User(props) {
   let history = useHistory();
   let { user_id } = useParams();
   let [ user, setUser ] = useState({id: "asd",name: "Asd",password: "asd123"})
+  // 변경 결과 
   const [resultLoading, setResultLoading] = useState({});
   const [overlapChecking, setoverlapChecking] = useState({});
+  //중복 결과
   const [overlap, setOverlap] = useState(true);
   const [overlapAlerts, setOverlapAlert] = useState(false);
   useEffect(() => {
@@ -29,6 +31,7 @@ function User(props) {
     }, [overlapChecking]);
     useEffect(() => {
       //로그인 버튼 클릭 할 때마다 실행됨
+      // post 요청 보내고 결괴 빋이서 실행하기
       }, [resultLoading]);
   useEffect(() => { 
     axios.get(`/user/${user_id}`)

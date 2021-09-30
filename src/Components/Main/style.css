@@ -80,6 +80,9 @@
   .title {
     width: 180px;
   }
+  .page-link {
+    padding: 6px 10px;
+  }
 }
 @media (max-width: 380px) {
   .title {

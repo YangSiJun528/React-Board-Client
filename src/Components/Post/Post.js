@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function Post(props) {
   let history = useHistory();
-  let [content, setContent] = useState({title: "asd",body:"<h1>aaaa</h1><p>aaasdaa</p>"});
+  let [content, setContent] = useState({title: "asd",body:"<h1>aaaa</h1><p>aaasdaa</p>",date:"21/09/23"});
   let [user, setUser] = useState({id: "asd",name: "asd"});
   let { post_id } = useParams();
   useEffect(() => { 
@@ -23,12 +23,20 @@ function Post(props) {
     <Container>
       <h1 className="display-4">{content.title}</h1>
       <hr/>
+      <div align="right">
+        <span className="mx-2">User: {user.name}</span>
+        <span>Date: {content.date}</span>
+      </div>
       <div dangerouslySetInnerHTML={ {__html: content.body} }></div>
       <div align="right">
-        <Button variant="primary"  onClick={() => {
+        <Button variant="primary mx-2"  onClick={() => {
           history.push(`/write/${post_id}`)
         }}>ReWrite</Button>
+        <Button variant="danger"  onClick={() => {
+          history.push(`/`)
+        }}>Delate</Button>
       </div>
+      
     </Container>
   );
 }
