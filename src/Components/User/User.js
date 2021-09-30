@@ -34,7 +34,7 @@ function User(props) {
       // post 요청 보내고 결괴 빋이서 실행하기
       }, [resultLoading]);
   useEffect(() => { 
-    axios.get(`/user/${user_id}`)
+    axios.get(`/userId/${user_id}`)
       .then((result) => {
         setUser(result.data)
       })

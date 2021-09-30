@@ -13,9 +13,20 @@ function simulateNetworkRequest() {
 function Login(props) {
   let history = useHistory();
   const [resultLoading, setResultLoading] = useState({});
+  const [data, setData] = useState();
   useEffect(() => {
-    //로그인 버튼 클릭 할 때마다 실행됨
-    }, [resultLoading]);
+    return () => {
+      setData({id: document.querySelector(".id").value, password: document.querySelector(".password").value})
+  }}, [resultLoading]);
+
+  useEffect(() => {
+      return () => {
+        axios.post("/login", JSON.stringify(data), {
+          headers: { "Content-Type": `application/json`}
+        })
+        console.log(JSON.stringify(data))
+      }}, [data]);
+    
   return (
     <Container>
       <h3 className="mb-3">Login</h3>
@@ -23,12 +34,12 @@ function Login(props) {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>ID</Form.Label>
           <div className="mb-3 d-flex justify-content-between">
-          <Form.Control type="text" autocomplete="off" placeholder="ID" />
+          <Form.Control type="text" className="id" autocomplete="off" placeholder="ID" />
           </div>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control type="password" className="password" placeholder="Password" />
         </Form.Group>
         <div align="right">
           <LoadingBtn request={simulateNetworkRequest} setResult={setResultLoading} loading={'Loading...'} unLoading={'Login'}/>

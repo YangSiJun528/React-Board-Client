@@ -11,7 +11,7 @@ function Post(props) {
   let [user, setUser] = useState({id: "asd",name: "asd"});
   let { post_id } = useParams();
   useEffect(() => { 
-  axios.get(`/post/${post_id}`)
+  axios.get(`/postId/${post_id}`)
     .then((result) => {
       setContent(result.data.content)
       setUser(result.data.user)
@@ -21,13 +21,13 @@ function Post(props) {
 // 유저 정보 확인해서 지금 로그인 되어있으면 수정버튼 나타남
   return (
     <Container>
-      <h1 className="display-4">{content.title}</h1>
+      <h1 className="display-4">{content? content.title: null}</h1>
       <hr/>
       <div align="right">
-        <span className="mx-2">User: {user.name}</span>
-        <span>Date: {content.date}</span>
+        <span className="mx-2">User: {user? user.name: null}</span>
+        <span>Date: {content? content.date: null}</span>
       </div>
-      <div dangerouslySetInnerHTML={ {__html: content.body} }></div>
+      <div dangerouslySetInnerHTML={ {__html: content? content.body: null} }></div>
       <div align="right">
         <Button variant="primary mx-2"  onClick={() => {
           history.push(`/write/${post_id}`)
